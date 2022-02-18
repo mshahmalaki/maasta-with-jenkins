@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  parameters{
+    booleanParam(name: "FORCE_INIT", defaultValue: false)
+  }
   stages {
     stage("Load Configurations"){
       steps{
@@ -16,10 +19,15 @@ pipeline {
     }
     stage("Init"){
       when{
-        equals(
-          actual: currentBuild.number,
-          expected: 1
-        )
+        anyOf{
+          equals(
+            actual: currentBuild.number,
+            expected: 1
+          )
+          expression{
+            return params.FORCE_INIT
+          }
+        }
       }
       steps{
         sh "terraform init"
