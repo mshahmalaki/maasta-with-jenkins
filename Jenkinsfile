@@ -14,9 +14,19 @@ pipeline {
         sh "rm -rf TFConfigs"
       }
     }
+    stage("Init"){
+      when{
+        equals(
+          actual: currentBuild.number,
+          expected: 1
+        )
+      }
+      steps{
+        sh "terraform init"
+      }
+    }
     stage("Deploy"){
       steps {
-        sh "terraform init"
         sh "terraform apply -auto-approve"
       }
     }
