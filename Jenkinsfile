@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage("Deploy"){
       steps {
-        echo "Hello World"
+        sh "terraform init"
+        sh "terraform apply -auto-approve"
       }
     }
   }
