@@ -7,7 +7,7 @@ pipeline {
         dir("TFConfigs"){
           git(
             url: "$INFRA_CONFIG_GIT_URL",
-            credentialsID: "$INFRA_CONFIG_GIT_CREDENTIAL_ID"
+            credentialsId: "$INFRA_CONFIG_GIT_CREDENTIAL_ID"
           )
         }
         sh "mv TFConfigs/terraform.tfvars ."
