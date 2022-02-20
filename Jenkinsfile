@@ -2,6 +2,7 @@ pipeline {
   agent any
   parameters{
     booleanParam(name: "FORCE_INIT", defaultValue: false)
+    booleanParam(name: "FORCE_DESTROY", defaultValue: false)
   }
   stages {
     stage("Load Configurations"){
@@ -34,8 +35,23 @@ pipeline {
       }
     }
     stage("Deploy"){
+      when{
+        expression{
+          return !params.FORCE_DESTROY
+        }
+      }
       steps {
         sh "terraform apply -auto-approve"
+      }
+    }
+    stage("Destroy"){
+      when{
+        expression{
+          return params.FORCE_DESTROY
+        }
+      }
+      steps{
+        sh "terraform destroy -auto-approve"
       }
     }
   }
