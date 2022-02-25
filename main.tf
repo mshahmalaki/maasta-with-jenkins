@@ -1,6 +1,13 @@
-resource "maas_instance" "myinstance" {
+resource "maas_instance" "testing" {
   count = 2
   release_erase = false
   release_erase_quick = true
-  tags = [ "for-terraform-provisioning" ]
+  tags = [ "testing" ]
+}
+
+resource "maas_instance" "production" {
+  count = 2
+  release_erase = false
+  release_erase_quick = true
+  tags = [ "prod" ]
 }
