@@ -4,3 +4,6 @@ variable "MAAS_API_KEY" {
 variable "MAAS_API_URL" {
   type = string
 }
+variable "MAAS_MACHINE_TAGS" {
+  type = list(any)
+}
