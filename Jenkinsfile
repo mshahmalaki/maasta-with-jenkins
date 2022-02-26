@@ -11,6 +11,7 @@ pipeline {
         dir("TFConfigs"){
           git(
             url: "$INFRA_CONFIG_GIT_URL",
+            branch: "main",
             credentialsId: "$INFRA_CONFIG_GIT_CREDENTIAL_ID"
           )
         }
