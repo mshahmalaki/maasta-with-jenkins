@@ -1,4 +1,4 @@
-resource "maas_instance" "testing" {
+resource "maas_instance" "my_instance" {
   count               = 2
   release_erase       = false
   release_erase_quick = true
