@@ -37,8 +37,9 @@ pipeline {
         equals(actual: currentBuild.number,expected: 1)
       }
       steps{
-        sh "export TFENV=`echo ${env.JOB_NAME} |  cut -d \"-\" -f 2`" 
-        sh 'terraform workspace new $TFENV'
+        sh '''export TFENV=`echo ${env.JOB_NAME} |  cut -d \\"-\\" -f 2`
+            terraform workspace new $TFENV
+        '''
       }
     }
     stage("Deploy"){
