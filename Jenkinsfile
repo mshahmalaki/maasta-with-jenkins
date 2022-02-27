@@ -32,6 +32,14 @@ pipeline {
         sh "terraform init"
       }
     }
+    stage("Init"){
+      when{
+        equals(actual: currentBuild.number,expected: 1)
+      }
+      steps{
+        sh "export TFENV=`echo ${env.JOB_NAME} |  cut -d \"-\" -f 2` && terraform workspace new $TFENV"
+      }
+    }
     stage("Deploy"){
       when{
         expression{

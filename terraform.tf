@@ -6,7 +6,7 @@ terraform {
   }
   backend "s3" {
     endpoint                    = "http://192.168.121.14:9000"
-    bucket                      = "testing.tfstate"
+    bucket                      = "terraform"
     region                      = "main"
     key                         = "terraform.tfstate"
     access_key                  = "5f94956791a8d768"
@@ -15,5 +15,6 @@ terraform {
     skip_metadata_api_check     = true
     skip_region_validation      = true
     force_path_style            = true
+    workspace_key_prefix        = "tfstate"
   }
 }
