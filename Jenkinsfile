@@ -32,7 +32,7 @@ pipeline {
         sh "terraform init"
       }
     }
-    stage("Init"){
+    stage("Create Workspace & Switch to it"){
       when{
         equals(actual: currentBuild.number,expected: 1)
       }
