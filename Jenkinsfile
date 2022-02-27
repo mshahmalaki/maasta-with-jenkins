@@ -22,10 +22,7 @@ pipeline {
     stage("Init"){
       when{
         anyOf{
-          equals(
-            actual: currentBuild.number,
-            expected: 1
-          )
+          equals(actual: currentBuild.number,expected: 1)
           expression{
             return params.FORCE_INIT
           }
