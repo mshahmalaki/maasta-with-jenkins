@@ -16,6 +16,7 @@ pipeline {
           )
         }
         sh "mv TFConfigs/terraform.tfvars ."
+        sh "mv TFConfigs/backend.tfvars ."
         sh "rm -rf TFConfigs"
       }
     }
@@ -29,7 +30,7 @@ pipeline {
         }
       }
       steps{
-        sh "terraform init"
+        sh "terraform init -backend-config=backend.tfvars"
       }
     }
     stage("Create Workspace & Switch to it"){
