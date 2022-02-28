@@ -1,5 +1,5 @@
 resource "maas_instance" "my_instance" {
-  count               = 2
+  count               = 1
   release_erase       = false
   release_erase_quick = true
   tags                = var.MAAS_MACHINE_TAGS
