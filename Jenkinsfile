@@ -38,7 +38,8 @@ pipeline {
         equals(actual: currentBuild.number,expected: 1)
       }
       steps{
-        sh "terraform workspace new `echo ${env.JOB_NAME} |  cut -d \"-\" -f 2`"
+        sh "terraform workspace new `echo ${env.JOB_NAME} |  cut -d \"-\" -f 2` || true"
+        sh "terraform workspace select `echo ${env.JOB_NAME} |  cut -d \"-\" -f 2`"
       }
     }
     stage("Deploy"){
