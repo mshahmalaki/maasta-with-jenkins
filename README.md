@@ -7,7 +7,7 @@ Git server <br>
 MinIO (Object Storage to store terraform.tfstate) <br>
 Terraform CLI <br>
 MAAS + Ready Machines <br>
-> :information: for testing use [this stack](https://github.com/mshahmalaki/jenkins-stack.git) for Jenkins + Gitea + MinIO + Docker Registry
+> :information_source: for testing use [this stack](https://github.com/mshahmalaki/jenkins-stack.git) for Jenkins + Gitea + MinIO + Docker Registry
 
 ## How to
 We need two `.tfvars` files: <br>
