@@ -5,7 +5,6 @@ terraform {
     }
   }
   backend "s3" {
-    endpoint                    = "http://192.168.121.14:9000"
     region                      = "main"
     key                         = "terraform.tfstate"
     skip_credentials_validation = true

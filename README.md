@@ -17,14 +17,15 @@ We need two `.tfvars` files: <br>
 
 ### `terraform.tfvars`
 ```
-MAAS_API_KEY      = "MAAS_API_KEY"
 MAAS_API_URL      = "http://MAAS_IP:5240/MAAS"
+MAAS_API_KEY      = "MAAS_API_KEY"
 # Use tags to constraint provision (optional)
 MAAS_MACHINE_TAGS = ["MACHINE_TAGS_FOR_PROVISIONING"]
 ```
 
 ### `backend.tfvars`
 ```
+endpoint             = "http://MINIO_IP:9000"
 bucket               = "MINIO_BUCKET_NAME"
 access_key           = "MINIO_ACCESS_KEY"
 secret_key           = "MINIO_SECRET_KEY"
