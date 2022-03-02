@@ -4,5 +4,5 @@ resource "maas_instance" "my_instance" {
   release_erase_quick = true
   tags                = var.MAAS_MACHINE_TAGS
   user_data           = file("${path.module}/user_data/preinstall_packages.yml")
-  comment             = "deployment vi Hashicorp Terraform"
+  comment             = "deployment vi Hashicorp Terraform ;)"
 }
