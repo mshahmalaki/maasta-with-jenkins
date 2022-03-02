@@ -14,6 +14,13 @@ docker_required_packages:
   - lsb-release
   - python3
   - python3-pip
+  - htop
+  - ncdu
+  - net-tools
+  - open-vm-tools
+  - tmux
+  - tree
+  - vim
 
 docker_new_packages:
   - docker-ce
