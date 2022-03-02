@@ -1,8 +1,8 @@
 pipeline {
   agent any
-  options { 
-    timestamps () 
-  }
+  // options { 
+  //   timestamps () 
+  // }
   parameters{
     booleanParam(name: "FORCE_INIT", defaultValue: false)
     booleanParam(name: "FORCE_DESTROY", defaultValue: false)
