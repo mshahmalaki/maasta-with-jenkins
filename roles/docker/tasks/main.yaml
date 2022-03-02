@@ -1,0 +1,34 @@
+---
+- name: update apt cache and upgrade system
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: remove old packages
+  apt:
+    name: "{{ docker_old_packages }}"
+    state: absent
+
+- name: install required packages
+  apt:
+    name: "{{ docker_required_packages }}"
+    state: present
+
+- name: adding docker repository key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: adding docker package repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_facts.lsb.codename }} stable
+
+- name: install docker
+  apt:
+    name: "{{ docker_new_packages }}"
+    state: present
+
+- name: install docker python package
+  pip:
+    name: "{{ pip_packages }}"
+    state: present

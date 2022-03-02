@@ -17,7 +17,9 @@ pipeline {
         }
         sh "mv TFConfigs/terraform.tfvars ."
         sh "mv TFConfigs/backend.tfvars ."
+        sh "mv TFConfigs/envs.groovy ./jkenvs"
         sh "rm -rf TFConfigs"
+        load "jkenvs/envs.groovy"
       }
     }
     stage("Init"){
@@ -42,7 +44,7 @@ pipeline {
         sh "terraform workspace select `echo ${env.JOB_NAME} |  cut -d \"-\" -f 2`"
       }
     }
-    stage("Deploy"){
+    stage("Deploy IaC"){
       when{
         expression{
           return !params.FORCE_DESTROY
@@ -50,6 +52,25 @@ pipeline {
       }
       steps {
         sh "terraform apply -auto-approve"
+      }
+    }
+    stage("Deploy CaC"){
+      when{
+        expression{
+          return !params.FORCE_DESTROY
+        }
+      }
+      steps {
+        sh "terraform show -json | python3 -m maasta"
+        ansiblePlaybook (
+          become: true, 
+          becomeUser: "ubuntu", 
+          colorized: true, 
+          credentialsId: "$ANSIBLE_SSH_KEY_CREDENTIAL", 
+          disableHostKeyChecking: true, 
+          inventory: "inventory.yaml", 
+          playbook: "deploy.yaml" 
+        )
       }
     }
     stage("Destroy"){

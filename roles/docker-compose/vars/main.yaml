@@ -1,0 +1,7 @@
+---
+docker_required_packages:
+  - python3
+  - python3-pip
+
+pip_packages:
+  - docker-compose

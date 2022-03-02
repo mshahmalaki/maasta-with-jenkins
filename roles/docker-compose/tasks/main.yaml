@@ -1,0 +1,15 @@
+---
+- name: update apt cache and upgrade system
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: install required packages
+  apt:
+    name: "{{ docker_required_packages }}"
+    state: present
+
+- name: install docker python package
+  pip:
+    name: "{{ pip_packages }}"
+    state: present
