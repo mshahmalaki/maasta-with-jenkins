@@ -75,6 +75,7 @@ pipeline {
         sh "terraform show -json | python3 -m maasta"
         ansiblePlaybook (
           become: true, 
+          colorized: true, 
           credentialsId: "$ANSIBLE_SSH_KEY_CREDENTIAL", 
           disableHostKeyChecking: true, 
           inventory: "inventory.yaml", 
