@@ -36,4 +36,4 @@ workspace_key_prefix = "tfstate"
 ### Define Jenkins job
 According to `*.groovy` files in [Jenkins environments directory](jkenvs), we need define Jenkins job (Pipeline job) with name of the groovy file name. For example:<br>
 `infra-testing.groovy` :arrow_right: **infra-testing** <br>
-Please refer to **Load Configurations** stage in [Jenkinsfile](Jenkinsfile#L8-L22). **Run job and enjoy infrastructue automation.**
+Please refer to **Load Configurations** stage in [Jenkinsfile](Jenkinsfile#L10-L27). **Run job and enjoy infrastructue automation.**
