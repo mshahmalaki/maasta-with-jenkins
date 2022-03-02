@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  options { 
+    timestamps () 
+  }
   parameters{
     booleanParam(name: "FORCE_INIT", defaultValue: false)
     booleanParam(name: "FORCE_MIGRATE", defaultValue: false)
