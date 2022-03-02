@@ -27,5 +27,8 @@ docker_new_packages:
   - docker-ce-cli
   - containerd.io
 
+docker_users:
+  - ubuntu
+
 pip_packages:
   - docker
