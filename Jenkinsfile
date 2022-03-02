@@ -5,7 +5,6 @@ pipeline {
   }
   parameters{
     booleanParam(name: "FORCE_INIT", defaultValue: false)
-    booleanParam(name: "FORCE_MIGRATE", defaultValue: false)
     booleanParam(name: "FORCE_DESTROY", defaultValue: false)
   }
   stages {
@@ -31,22 +30,12 @@ pipeline {
         anyOf{
           equals(actual: currentBuild.number,expected: 1)
           expression{
-            return params.FORCE_INIT && !params.FORCE_MIGRATE
+            return params.FORCE_INIT
           }
         }
       }
       steps{
         sh "terraform init -backend-config=backend.tfvars"
-      }
-    }
-    stage("Migrate"){
-      when{
-        expression{
-          return !params.FORCE_INIT && params.FORCE_MIGRATE
-        }
-      }
-      steps{
-        sh "terraform init -migrate-state -backend-config=backend.tfvars"
       }
     }
     stage("Create Workspace & Switch to it"){
