@@ -66,6 +66,11 @@ pipeline {
       }
       steps {
         sh "terraform apply -auto-approve"
+        echo 'wait for cloud initializing ...'
+        sleep(
+          time: 5, 
+          unit: 'MINUTES'
+        )
       }
     }
     stage("Deploy CaC"){
