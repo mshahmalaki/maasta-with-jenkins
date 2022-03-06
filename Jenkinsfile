@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  // options { 
-  //   timestamps () 
-  // }
   parameters{
     booleanParam(name: "FORCE_INIT", defaultValue: false)
     booleanParam(name: "FORCE_DESTROY", defaultValue: false)
@@ -55,11 +52,6 @@ pipeline {
       }
       steps {
         sh "terraform apply -auto-approve"
-        // echo 'wait for cloud initializing ...'
-        // sleep(
-        //   time: 2, 
-        //   unit: 'MINUTES'
-        // )
       }
     }
     stage("Deploy CaC"){
@@ -78,6 +70,7 @@ pipeline {
           inventory: "inventory.yaml", 
           playbook: "deploy.yaml" 
         )
+        archiveArtifacts artifacts: 'inventory.yaml', followSymlinks: false
       }
     }
     stage("Destroy"){
