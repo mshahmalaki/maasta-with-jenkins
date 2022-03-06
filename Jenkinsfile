@@ -7,19 +7,19 @@ pipeline {
   stages {
     stage("Load Configurations"){
       steps{
-        load "jkenvs/${env.JOB_NAME}.groovy"
-        dir("TFConfigs"){
+        load "jenkins/env/${env.JOB_NAME}.groovy"
+        dir("jenkins/config"){
           git(
             url: "$INFRA_CONFIG_GIT_URL",
             branch: "main",
             credentialsId: "$INFRA_CONFIG_GIT_CREDENTIAL_ID"
           )
         }
-        sh "mv TFConfigs/terraform.tfvars ."
-        sh "mv TFConfigs/backend.tfvars ."
-        sh "mv TFConfigs/envs.groovy ./jkenvs"
-        sh "rm -rf TFConfigs"
-        load "jkenvs/envs.groovy"
+        sh "mv jenkins/config/terraform.tfvars ."
+        sh "mv jenkins/config/backend.tfvars ."
+        sh "mv jenkins/config/envs.groovy ./jenkins/env"
+        sh "rm -rf jenkins/config"
+        load "jenkins/env/envs.groovy"
       }
     }
     stage("Init"){

@@ -1,4 +1,13 @@
 ---
+- name: check docker installation
+  shell: "which docker"
+  ignore_errors: yes
+  register: result
+
+- name: skip docker installation role
+  meta: end_play
+  when: result.rc == 0
+
 - name: update apt cache and upgrade system
   apt:
     update_cache: yes
@@ -32,3 +41,10 @@
   pip:
     name: "{{ pip_packages }}"
     state: present
+
+- name: Ensure docker users are added to the docker group.
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: true
+  with_items: "{{ docker_users }}"

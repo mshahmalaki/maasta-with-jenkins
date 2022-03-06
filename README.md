@@ -13,7 +13,7 @@ MAAS + Ready Machines <br>
 We need two `.tfvars` files: <br>
 `terraform.tfvars` <br>
 `backend.tfvars` <br>
-> :white_check_mark: We can store this sensetive informations about our infrastructure credentials on private and separated git repository to restrict and disallow anonymous access. Please refer to [Jenkins environments directory](jkenvs) to set git repos URL for every environments and credential. So we need git repo to store `.tfvars` for every environments.
+> :white_check_mark: We can store this sensetive informations about our infrastructure credentials on private and separated git repository to restrict and disallow anonymous access. Please refer to [Jenkins environments directory](jenkins/env/) to set git repos URL for every environments and credential. So we need git repo to store `.tfvars` for every environments.
 
 ### `terraform.tfvars`
 ```
@@ -34,6 +34,6 @@ secret_key           = "MINIO_SECRET_KEY"
 workspace_key_prefix = "tfstate"
 ```
 ### Define Jenkins job
-According to `*.groovy` files in [Jenkins environments directory](jkenvs), we need define Jenkins job (Pipeline job) with name of the groovy file name. For example:<br>
+According to `*.groovy` files in [Jenkins environments directory](jenkins/env/), we need define Jenkins job (Pipeline job) with name of the groovy file name. For example:<br>
 `infra-testing.groovy` :arrow_right: **infra-testing** <br>
 Please refer to **Load Configurations** stage in [Jenkinsfile](Jenkinsfile#L10-L27). **Run job and enjoy infrastructue automation.**

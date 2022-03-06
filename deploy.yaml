@@ -2,4 +2,8 @@
 - hosts: all
   roles:
     - docker
+
+- hosts: all
+  gather_facts: no
+  roles:
     - docker-compose
