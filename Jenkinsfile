@@ -1,5 +1,10 @@
 pipeline {
   agent any
+  options {
+    buildDiscarder logRotator(artifactDaysToKeepStr: '30', artifactNumToKeepStr: '7', daysToKeepStr: '30', numToKeepStr: '7')
+    disableConcurrentBuilds()
+    disableResume()
+  }
   parameters{
     booleanParam(name: "FORCE_INIT", defaultValue: false)
     booleanParam(name: "FORCE_DESTROY", defaultValue: false)
