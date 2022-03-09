@@ -17,10 +17,12 @@ We need two `.tfvars` files: <br>
 
 ### `terraform.tfvars`
 ```
-MAAS_API_URL      = "http://MAAS_IP:5240/MAAS"
-MAAS_API_KEY      = "MAAS_API_KEY"
+# Count of Machines to provision
+MAAS_MACHINE_COUNT = 1
+MAAS_API_URL       = "http://MAAS_IP:5240/MAAS"
+MAAS_API_KEY       = "MAAS_API_KEY"
 # Use tags to constraint provision (optional)
-MAAS_MACHINE_TAGS = ["MACHINE_TAGS_FOR_PROVISIONING"]
+MAAS_MACHINE_TAGS  = ["MACHINE_TAGS_FOR_PROVISIONING"]
 ```
 
 ### `backend.tfvars`
