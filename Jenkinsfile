@@ -4,10 +4,6 @@ pipeline {
     booleanParam(name: "FORCE_INIT", defaultValue: false)
     booleanParam(name: "FORCE_DESTROY", defaultValue: false)
   }
-  triggers {
-    pollSCM 'H/15 * * * *'
-  }
-
   stages {
     stage("Load Configurations"){
       steps{
